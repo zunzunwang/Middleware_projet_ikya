@@ -1,0 +1,32 @@
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import Gestion_ami.UserService;
+
+@Stateless(mappedName = "UserService")
+public class UserServiceImpl implements UserService {
+
+	 @PersistenceContext
+	 private EntityManager em ;
+
+//	 public String createUser(String userAccount, String userPassword, String userSex,
+//				String userEmail, String userName){
+	 public String createUser(String userAccount, String userPassword, String userSex,
+				String userEmail, String userName){
+		 
+		 User user = new User(userAccount,userPassword,userSex,userEmail,userName) ;
+		               
+		 em.persist(user) ;
+		 
+		 return 
+				 "Account: " + user.getUserAccount() + "\n" +
+				"Password: " + user.getUserPassword() + "\n" + 
+				"Sex: " + user.getUserSex() + "\n" +
+				"Email: " + user.getUserEmail() + "\n" +
+				"Name: " + user.getUserName();
+
+	}
+
+}

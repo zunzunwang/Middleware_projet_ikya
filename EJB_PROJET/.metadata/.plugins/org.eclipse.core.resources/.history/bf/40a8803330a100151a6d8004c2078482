@@ -1,0 +1,54 @@
+
+
+import java.util.Properties;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+
+public class DataClass {
+	InitialContext ctx;
+	private static UserFacadeRemote ufr;
+
+	public DataClass() {
+
+		try {
+			Properties props = new Properties();
+			props.setProperty("java.naming.factory.initial",
+					"org.jnp.interfaces.NamingContextFactory");
+			props.setProperty("java.naming.provider.url", "localhost:1099");
+			props.setProperty("java.naming.factory.url.pkgs",
+					"org.jboss.naming");
+
+			ctx = new InitialContext(props);
+			System.out.println("================测试EJB连接================");
+			ufr = (UserFacadeRemote) ctx.lookup("Chat/UserFacadeBean/remote");
+			System.out.println("================EJB连接成功================");
+
+		} catch (NamingException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	public void createUser(String arg0, String arg1, String arg2, String arg3) {
+		User user = new User();
+		user.setUserAccount(arg0);
+		user.setUserSex(arg1);
+		user.setUserPassword(arg3);
+		user.setUserName(arg2);
+		user.setUserEmail("lovesunstar@sina.com");
+		ufr.register(user);
+	}
+
+	public static void main(String[] args) {
+		DataClass dataClass = new DataClass();
+		// dataClass.createUser("lovesunstar", "男", "孙江挺", "123456");
+		// dataClass.createUser("lovecaistar", "女", "蔡文娟", "123456");
+		dataClass.createUser("1", "男", "游客01", "1");
+		dataClass.createUser("2", "女", "游客02", "2");
+
+	}
+
+}

@@ -1,0 +1,5 @@
+package Gestion_ami;
+
+public interface Verification_User_Account {
+
+}

@@ -1,0 +1,95 @@
+import java.rmi.RemoteException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import Gestion_ami.Demande_FriendsApply;
+import Gestion_ami.Get_User_info;
+import Gestion_ami.Is_Online;
+import Gestion_ami.Is_my_friend;
+import Gestion_ami.Set_friendapply;
+import Gestion_ami.Verification_User_Account;
+
+
+public class Test_Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		   try {
+			   // création du "contexte initial" = de la connexion à l'annuaire du serveur
+			   InitialContext context = new InitialContext();
+
+			   // requête sur le nom de la ressource que l'on veut, ici notre EJB
+			   MarinService marinService = (MarinService)context.lookup("MarinService") ;
+			   Is_my_friend is_my_friend = (Is_my_friend)context.lookup("Is_my_friend");
+			   Is_Online is_Online = (Is_Online)context.lookup("Is_Online");
+			   Get_User_info get_User_info = (Get_User_info)context.lookup("Get_User_info");
+			   Set_friendapply set_friendapply =(Set_friendapply)context.lookup("Set_friendapply");
+			   Verification_User_Account verification_user_account =(Verification_User_Account)context.lookup("Verification_User_Account");
+			   Demande_FriendsApply  demande_friendsapply =(Demande_FriendsApply)  context.lookup("Demande_FriendsApply");
+
+
+
+			   // invocation d'une méthode
+			   /**
+			    *  test basic
+			    */
+			   /*
+			   long id;
+			   id = marinService.createMarin(13,"Salm","user",0);			   
+			   System.out.println("Id = " + id) ;
+			   */
+			   /**
+			    * test is my friend
+			    */
+			   /*
+			   if(is_my_friend.is_myfriend(1,2)){
+				   System.out.println("ok");				   
+			   }else{
+				   System.out.println("no");
+			   }
+			   */
+			   /**
+			    * test is my friend online
+			    */
+			   //is_Online.is_online(3);
+			   /**
+			    * test user info
+			    */
+			   /*
+			   User user = new User();
+			   user = (User) get_User_info.get_user_info(3);
+			   System.out.println(user.getUserId());
+			   System.out.println(user.getUserName());
+			   System.out.println(user.getUserAccount());
+               */
+			   
+			   /**
+			    * test 		 ListFriendapply
+			    */
+			   /*
+			   set_friendapply.createfriendapply(2, 3);
+			   */
+			   /**
+			    * test verification user accout 
+			    */
+			   //verification_user_account.verification_user_account("liu");
+			   /**
+			    * test demande friend apply
+			    */
+			   //demande_friendsapply.demande_FriendsApply(1, 4);
+
+
+
+		      } catch (NamingException e) {
+		         e.printStackTrace();
+		      }
+		   }
+
+	private static boolean is_my_frend(int i, int j) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+		
+	}

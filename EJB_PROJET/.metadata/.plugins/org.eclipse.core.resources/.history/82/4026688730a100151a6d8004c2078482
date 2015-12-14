@@ -1,0 +1,133 @@
+
+
+import java.util.List;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+
+@Stateless
+@Remote(UserFacadeRemote.class)
+public class UserFacadeBean implements UserFacadeRemote {
+
+	@PersistenceContext
+	private EntityManager em;
+
+	/**
+	 * @author Sun@Xmu
+	 * @param user
+	 * @return boolean
+	 */
+	@Override
+	public boolean register(User user) {
+		// TODO Auto-generated method stub
+		em.persist(user);
+		System.out.println("用户" + user.getUserAccount() + "注册成功！！");
+		return true;
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @paramUser
+	 * @return
+	 */
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		User newUser = em.find(User.class, user.getUserId());
+		newUser.setUserPassword(user.getUserPassword());
+		em.merge(user);
+
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @param user
+	 * @return
+	 */
+	@Override
+	public void removeUser(User user) {
+		// TODO Auto-generated method stub
+		em.remove(user);
+
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @param userAccount
+	 * @return User
+	 * 
+	 */
+	@Override
+	public User getUserByAccount(String userAccount) {
+		// TODO Auto-generated method stub
+		Query userQ = em
+				.createQuery("SELECT u FROM User u WHERE u.userAccount =:userAccount");
+		userQ.setParameter("userAccount", userAccount);
+		return (User) userQ.getSingleResult();
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @param userName
+	 * @return User
+	 */
+	@Override
+	public User getUserByName(String userName) {
+		// TODO Auto-generated method stub
+		Query userQ = em
+				.createQuery("SELECT u FROM User u WHERE u.userName =:userName");
+		userQ.setParameter("userName", userName);
+		return (User) userQ.getSingleResult();
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @param userAccount
+	 * @return List
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUser(Integer userId) {
+		// TODO Auto-generated method stub
+		Query allUserQ = em
+				.createQuery("SELECT u FROM User u WHERE NOT(u.userId = :userId)");
+		allUserQ.setParameter("userId", userId);
+		return allUserQ.getResultList();
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @param userAccount
+	 * @return boolean
+	 */
+	@Override
+	public boolean isUserExist(String userAccount) {
+		// TODO Auto-generated method stub
+
+		Query userQ = em
+				.createQuery("SELECT u FROM User u WHERE u.userAccount =:userAccount");
+		userQ.setParameter("userAccount", userAccount);
+		return userQ.getResultList().size() > 0;
+	}
+
+	/**
+	 * @author Sun@Xmu
+	 * @param userAccount
+	 * @return boolean
+	 */
+	@Override
+	public boolean isUserOnline(String userAccount) {
+		// TODO Auto-generated method stub
+
+		Query userQ = em
+				.createQuery("SELECT u FROM User u WHERE u.userAccount =:userAccount");
+		userQ.setParameter("userAccount", userAccount);
+		User user = (User) userQ.getSingleResult();
+		return user.getIsOnline();
+	}
+
+}

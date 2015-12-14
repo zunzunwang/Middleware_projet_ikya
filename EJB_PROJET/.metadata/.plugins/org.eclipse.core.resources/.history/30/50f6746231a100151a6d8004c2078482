@@ -1,0 +1,5 @@
+package Gestion_ami;
+
+public interface Is_my_friend {
+
+}

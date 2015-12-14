@@ -1,0 +1,30 @@
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
+@Stateless(mappedName = "MarinService")
+public class MarinServiceImpl implements MarinService {
+
+	 @PersistenceContext
+     // Create EntityManagerFactory for a persistence unit called em1.
+	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
+	 
+     // create EntityManager
+	 private EntityManager em = emf.createEntityManager();
+	 
+     // Get a transaction instance and start the transaction
+     EntityTransaction tx = em.getTransaction();
+
+	public long createMarin(int id, String uid, String mdp, int record) {
+
+		 Marin marin = new Marin(id,uid,mdp,record) ;
+		 em.persist(marin) ;
+
+		 return marin.getId() ;
+	}
+
+}

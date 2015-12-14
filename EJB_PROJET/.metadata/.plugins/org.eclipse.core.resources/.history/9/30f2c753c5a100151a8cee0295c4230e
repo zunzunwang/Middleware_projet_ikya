@@ -1,0 +1,98 @@
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the USER database table.
+ * 
+ */
+@Entity
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int userid;
+
+	private byte isonline;
+
+	private String useraccount;
+
+	private String useremail;
+
+	private String username;
+
+	private String userpassword;
+
+	private int userRecord;
+
+	private String usersex;
+
+    public User() {
+    }
+
+	public int getUserid() {
+		return this.userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public byte getIsonline() {
+		return this.isonline;
+	}
+
+	public void setIsonline(byte isonline) {
+		this.isonline = isonline;
+	}
+
+	public String getUseraccount() {
+		return this.useraccount;
+	}
+
+	public void setUseraccount(String useraccount) {
+		this.useraccount = useraccount;
+	}
+
+	public String getUseremail() {
+		return this.useremail;
+	}
+
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUserpassword() {
+		return this.userpassword;
+	}
+
+	public void setUserpassword(String userpassword) {
+		this.userpassword = userpassword;
+	}
+
+	public int getUserRecord() {
+		return this.userRecord;
+	}
+
+	public void setUserRecord(int userRecord) {
+		this.userRecord = userRecord;
+	}
+
+	public String getUsersex() {
+		return this.usersex;
+	}
+
+	public void setUsersex(String usersex) {
+		this.usersex = usersex;
+	}
+
+}

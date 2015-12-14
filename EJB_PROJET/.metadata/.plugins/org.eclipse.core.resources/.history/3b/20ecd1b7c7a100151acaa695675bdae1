@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="jpa-projet" transaction-type="JTA">
+	
+	<!-- Eclipse link JPA implementation -->
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		
+		<!-- Data source definition -->
+		<jta-data-source>jdbc/BDD_Middleware</jta-data-source>
+		<class>Marin</class>
+		<class>Message</class>
+		<class>List_contact</class>
+		<class>List_friendapply</class>
+		<class>ListDefisapply</class>
+		
+		
+		
+		
+		<properties>
+			<property name="eclipselink.ddl-generation"  
+			          value="drop-and-create-tables"/>
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,5 @@
+package Gestion_ami;
+
+public interface Demande_FriendsApply {
+
+}

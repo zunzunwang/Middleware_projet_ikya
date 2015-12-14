@@ -1,0 +1,134 @@
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.swing.*;
+
+import Gestion_ami.UserService;
+
+import java.awt.*;   
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Logup extends JFrame{
+	String result;
+	String pass;
+	String[] s = {"Man", "Woman"};
+	JFrame logUP = new JFrame("LogUP");
+	Container panel = logUP.getContentPane();
+	JTextField nameText =  new JTextField(50);
+	JTextField emailText =  new JTextField(50);
+	JTextField userNameText =  new JTextField(50);
+    JPasswordField jPasswordField = new JPasswordField(50);
+    JLabel jLabel1 = new JLabel("UserName: ");
+    JLabel jLabel2 = new JLabel("Sex: ");
+    JLabel jLabel3 = new JLabel("Email: ");
+    JLabel jLabel4 = new JLabel("Account: ");
+    JLabel jLabel5 = new JLabel("Password: ");
+    JButton jb1 = new JButton("Cancel");
+    JButton jb2 = new JButton("Register");
+    
+    
+    public Logup(){
+        ComboBoxModel mode=new SexModel();
+        final JComboBox combo=new JComboBox(mode);
+    	
+      
+		logUP.setContentPane(panel);
+		logUP.getLayeredPane().setLayout(null);
+		panel.setLayout(null);
+        
+        panel.add(jLabel1);
+        jLabel1.setBounds(50, 20, 80, 25);
+        
+        panel.add(nameText);
+        nameText.setBounds(135, 20, 200, 25);
+        
+        panel.add(jLabel2);
+        jLabel2.setBounds(50, 80, 80, 25);
+        
+        panel.add(combo);
+        combo.setBounds(135, 80, 200, 25);
+        
+        panel.add(jLabel3);
+        jLabel3.setBounds(50, 140, 80, 25);
+        
+        panel.add(emailText);
+        emailText.setBounds(135, 140, 200, 25);
+        
+        panel.add(jLabel4);
+        jLabel4.setBounds(50, 200, 80, 25);
+        
+        panel.add(userNameText);
+        userNameText.setBounds(135, 200, 200, 25);
+        
+        panel.add(jLabel5);
+        jLabel5.setBounds(50, 260, 80, 25);
+        
+        panel.add(jPasswordField);
+        jPasswordField.setBounds(135, 260, 200, 25);
+        
+        panel.add(jb1);
+        jb1.setBounds(50, 320, 100, 20);
+		jb1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent w) {
+				// action de Cancel
+				logUP.dispose();
+			    Login myLogin = new Login();
+			}
+		});
+        
+        panel.add(jb2);
+        jb2.setBounds(235, 320, 100, 20);
+		jb2.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent w) {
+				// action de register
+				pass = new String(jPasswordField.getPassword());
+		        result = nameText.getText()+"\n"
+	                       +combo.getSelectedItem()+"\n"
+	        		       +emailText.getText()+"\n"
+	        		       +userNameText.getText()+"\n"
+	        		       +pass+"\n";
+				System.out.println(result);
+		    	try {
+		    		InitialContext context = new InitialContext();
+		    		UserService userService = (UserService)context.lookup("UserService");
+		    		String user;
+		    		user = userService.createUser((byte)1
+		    									 ,nameText.getText()
+		    									 ,pass
+		    									 ,combo.getSelectedItem().toString()
+		    									 ,emailText.getText()
+		    									 ,userNameText.getText());
+		    		System.out.println(user);
+		    	    } catch (NamingException e) {
+		    	    	e.printStackTrace();
+		    	    }
+		    	
+				JOptionPane.showMessageDialog(null,"You have successfully registered!","Succeed",JOptionPane.INFORMATION_MESSAGE);
+				logUP.dispose();
+				Login myLogin = new Login();
+			}
+		});
+        
+        logUP.setSize(400, 380);
+        
+        //this.pack();
+//        logUP.dispose();
+        logUP.setLocationRelativeTo(null);
+        logUP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        logUP.setVisible(true);
+        logUP.setResizable(false);
+   
+    }
+    
+    class SexModel extends DefaultComboBoxModel{
+    	SexModel(){
+    		for (int i=0;i<s.length;i++)
+    			addElement(s[i]);
+    		}
+    	}
+    
+
+    public static void main(String[] args){
+        new Logup(); 
+    }
+}

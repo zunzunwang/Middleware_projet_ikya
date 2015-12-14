@@ -1,0 +1,20 @@
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+@Stateless(mappedName = "MarinService")
+public class MarinServiceImpl implements MarinService {
+
+	 @PersistenceContext
+	 private EntityManager em ;
+
+	public long createMarin(int id, String uid, String mdp, int record) {
+
+		 Marin marin = new Marin(id,uid,mdp,record) ;
+		 em.persist(marin) ;
+
+		 return marin.getId() ;
+	}
+
+}

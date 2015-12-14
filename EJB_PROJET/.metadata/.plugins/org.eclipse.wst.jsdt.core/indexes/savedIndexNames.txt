@@ -1,0 +1,1 @@
+INDEX VERSION 1.122+/Users/zunzunwang/Documents/JAVA_Projet/EJB_PROJET/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes

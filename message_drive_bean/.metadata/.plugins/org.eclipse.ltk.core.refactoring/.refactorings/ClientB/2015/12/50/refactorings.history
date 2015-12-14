@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;EchoMDBClient&apos; to &apos;EchoMDBClientB&apos;&#x0A;- Original project: &apos;ClientB&apos;&#x0A;- Original element: &apos;EchoMDBClient&apos;&#x0A;- Renamed element: &apos;EchoMDBClientB&apos;&#x0A;- Update references to refactored element&#x0A;- Rename similarly named elements&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;EchoMDBClient&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{EchoMDBClient.java[EchoMDBClient" matchStrategy="1" name="EchoMDBClientB" qualified="false" references="true" similarDeclarations="true" stamp="1449949028785" textual="false" version="1.0"/>
+</session>

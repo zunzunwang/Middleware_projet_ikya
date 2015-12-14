@@ -1,0 +1,76 @@
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Date;
+
+
+/**
+ * The persistent class for the list_friendapply database table.
+ * 
+ */
+@Entity
+@Table(name="list_friendapply")
+public class ListFriendapply implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int id;
+
+    @Temporal( TemporalType.TIMESTAMP)
+	private Date date;
+
+	private int from_userId;
+
+	private byte isRead;
+
+	private int to_userId;
+
+    public ListFriendapply() {
+    }
+    public ListFriendapply(int from_userId,int to_userId) {
+    	this.from_userId=from_userId;
+    	this.to_userId=to_userId;
+    	this.isRead=0;
+    }
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getFrom_userId() {
+		return this.from_userId;
+	}
+
+	public void setFrom_userId(int from_userId) {
+		this.from_userId = from_userId;
+	}
+
+	public byte getIsRead() {
+		return this.isRead;
+	}
+
+	public void setIsRead(byte isRead) {
+		this.isRead = isRead;
+	}
+
+	public int getTo_userId() {
+		return this.to_userId;
+	}
+
+	public void setTo_userId(int to_userId) {
+		this.to_userId = to_userId;
+	}
+
+}

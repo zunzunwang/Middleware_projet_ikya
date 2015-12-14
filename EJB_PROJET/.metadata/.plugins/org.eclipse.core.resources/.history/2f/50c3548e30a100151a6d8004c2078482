@@ -1,0 +1,18 @@
+
+
+import java.util.List;
+
+import javax.ejb.Remote;
+
+
+@Remote
+public interface MessageFacadeRemote {
+
+	public boolean sendMessage(Message message); // 发送消息
+
+	public List<Message> getNotReadMessage(String userAccount);
+
+	public void setReadMessage(Integer messageId);
+
+	public List<Message> getUserMessage(String hostName, String guestName);
+}

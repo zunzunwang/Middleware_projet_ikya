@@ -1,0 +1,244 @@
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.swing.*;
+
+import Gestion_ami.Allfriends;
+import Gestion_ami.Get_friends;
+
+public class windows{
+	String nameUser = null;
+	String sexUser = "Male";
+	String idUser = "Hello_Kity";
+	String emailUser = "yishuo.lyu@gmail.com";	
+
+	JFrame fen = new JFrame("MainWindow");
+	Container panel = fen.getContentPane();
+	JTextField name = new JTextField("Identifiant");
+	JButton add = new JButton("Ajouter");
+	JButton delete = new JButton("Supprimer");
+	JButton find = new JButton("Rechercher");
+	JLabel friendLab = new JLabel("Liste des friends");
+	JLabel nameLab = new JLabel("Identifiant");
+//	JTextArea friends = new JTextArea("");
+	JList friends = null;
+	JLabel info = new JLabel("Information detaillee:");
+	JLabel nameFriend = new JLabel("Name: ");
+	JLabel sexFriend = new JLabel("Sex: ");
+	JLabel idFriend = new JLabel("ID: ");
+	JLabel emailFriend = new JLabel("Email: ");
+	
+	JScrollPane friendScroll = new JScrollPane(friends);
+
+	JPanel panel1 = new JPanel();
+
+	@SuppressWarnings("unchecked")
+	public windows() {
+		final DefaultListModel myFriends = new DefaultListModel();
+
+		
+		
+		InitialContext context=null;
+		try {
+			context = new InitialContext();
+		} catch (NamingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Allfriends allFriends = null;
+		try {
+			allFriends = (Allfriends)context.lookup("Allfriends");
+		} catch (NamingException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
+		//输入用户的userId.
+		int userId = 1;
+		List<Object> result = allFriends.allfriends(userId);
+		for(int i=0; i<result.size(); i++){
+//			System.out.println(result.get(i)+" Fini");
+			int index = (int)result.get(i);
+//			System.out.println((int)result.get(i));
+			InitialContext context1 = null;
+			try {
+				context1 = new InitialContext();
+			} catch (NamingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Get_friends get_Friends = null;
+			try {
+				get_Friends = (Get_friends)context.lookup("GetFriends");
+				
+			} catch (NamingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			User user = (User) get_Friends.getFriends(index);
+
+//			myFriends.addElement(user.getUserName());
+
+////////////////////////////////////////////////////////////////////////////
+			myFriends.addElement(user.getUserAccount());
+//			System.out.println(user.getUserid()+user.getUseraccount()+user.getUsername()+
+//					user.getUserpassword()+user.getUsersex()+user.getUseremail());
+		}
+		System.out.println(result.size());
+		
+//		final DefaultListModel myFriends = new DefaultListModel();
+//		for(int i=0; i<result.size(); i++){
+//			myFriends.addElement(result.get(i).getUseraccount());
+//		}
+		
+		//example of the list of friends
+//		final DefaultListModel myFriends = new DefaultListModel();
+	    myFriends.addElement("Zhang san");
+//	    myFriends.addElement("Li si");
+//	    myFriends.addElement("Wang er");
+//	    myFriends.addElement("Alice");
+//	    myFriends.addElement("Linda");
+//	    myFriends.addElement("Aliex");
+//	    myFriends.addElement("Romain");
+//	    myFriends.addElement("Patrick");
+//	    myFriends.addElement("Ahram");
+//	    myFriends.addElement("Martin");
+//	    myFriends.addElement("Jack");
+
+		
+		fen.setContentPane(panel);
+		fen.getLayeredPane().setLayout(null);
+		panel.setLayout(null);
+		
+		final JLabel nameUserInfo = new JLabel(nameUser);
+		final JLabel sexUserInfo = new JLabel(sexUser);
+		final JLabel idUserInfo = new JLabel(idUser);
+		final JLabel emailUserInfo = new JLabel(emailUser);
+		
+        panel.add(nameUserInfo);
+        nameUserInfo.setBounds(500, 100, 200, 20);
+        panel.add(sexUserInfo);
+        sexUserInfo.setBounds(500, 150, 200, 20);
+        panel.add(idUserInfo);
+        idUserInfo.setBounds(500, 200, 200, 20);
+        panel.add(emailUserInfo);
+        emailUserInfo.setBounds(500, 250, 200, 20);
+		
+		panel.add(name);
+		name.setBounds(10, 40, 120, 20);
+		panel.add(find);
+		find.setBounds(10, 200, 120, 20);
+		find.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				find.setToolTipText("Input le nom de votre ami que vous voulez trouver.");
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			public void mouseClicked(MouseEvent w) {
+				// action de find
+			}
+		});
+		
+		
+		panel.add(add);
+		add.setBounds(10, 230, 120, 20);
+		add.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				add.setToolTipText("Input le nom de votre ami que vous voulez ajouter.");
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+
+			public void mouseClicked(MouseEvent w) {
+				// action d'ajouter
+				String newUser = JOptionPane.showInputDialog("Please input the name: "); 
+				myFriends.addElement(newUser);
+				
+			}
+				
+		});
+		
+		panel.add(delete);
+		delete.setBounds(10, 260, 120, 20);
+		delete.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				delete.setToolTipText("Supprimer l'ami.");
+			}
+
+			public void mouseExited(MouseEvent e) {
+			}
+
+			public void mouseClicked(MouseEvent w) {
+				// action de supprimer				
+				if(friends.getSelectedIndex()!=-1){
+					myFriends.remove(friends.getSelectedIndex());
+					Object[] selectedvalues= friends.getSelectedValues();
+					String name = null;
+					int a = selectedvalues.length;
+					System.out.println(a);
+					for(int i=0; i<selectedvalues.length;i++){
+						 name = selectedvalues[i].toString(); 
+						 System.out.println(name+"wocaonimad");
+					}
+					
+					
+					}
+				
+			}
+		});
+
+
+		friends = new JList(myFriends);
+		friends.setBorder(BorderFactory.createTitledBorder("List of my friends: "));		
+		panel1.add(friends);
+		panel1.setLayout(new GridLayout(1,1));
+		panel1.add(new JScrollPane(this.friends));
+		panel.add(panel1);
+		panel1.setBounds(160, 40, 240, 240);
+		friends.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+//				i = friends.getSelectedIndex()+1;
+//				System.out.println(i);
+				nameUser = friends.getSelectedValue().toString();
+//				System.out.println(nameUser);
+				nameUserInfo.setText(nameUser);	
+				
+			}
+		});
+
+        panel.add(info);
+        info.setFont(new java.awt.Font("Verdana", 1, 20));
+        info.setBounds(420, 40, 300, 20);
+        panel.add(nameFriend);
+        nameFriend.setBounds(420, 100, 70, 20);
+        panel.add(sexFriend);
+        sexFriend.setBounds(420, 150, 70, 20);
+        panel.add(idFriend);
+        idFriend.setBounds(420, 200, 70, 20);
+        panel.add(emailFriend);
+        emailFriend.setBounds(420, 250, 70, 20);
+
+		fen.dispose();
+		fen.setSize(730, 350);
+		fen.setLocationRelativeTo(null);
+		fen.setVisible(true);
+		fen.setResizable(false);
+		fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+
+	public static void main(String[] args) {
+		windows fen = new windows();
+	}
+}

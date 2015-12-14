@@ -1,0 +1,4 @@
+public interface MarinService {
+
+   public long createMarin(String nom, String prenom, int salaire) ;
+}

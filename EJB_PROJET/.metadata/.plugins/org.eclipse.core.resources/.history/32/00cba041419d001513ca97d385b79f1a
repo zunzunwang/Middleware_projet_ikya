@@ -1,0 +1,19 @@
+package cn.edu.xmu.chat.control.message;
+
+import java.util.List;
+
+import javax.ejb.Remote;
+
+import cn.edu.xmu.chat.model.message.entity.Message;
+
+@Remote
+public interface MessageFacadeRemote {
+
+	public boolean sendMessage(Message message); // 发送消息
+
+	public List<Message> getNotReadMessage(String userAccount);
+
+	public void setReadMessage(Integer messageId);
+
+	public List<Message> getUserMessage(String hostName, String guestName);
+}

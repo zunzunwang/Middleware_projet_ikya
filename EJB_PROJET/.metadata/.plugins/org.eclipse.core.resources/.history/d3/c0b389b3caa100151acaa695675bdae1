@@ -1,0 +1,28 @@
+package Gestion_defis_Impl;
+
+
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.swing.JOptionPane;
+
+import Gestion_ami.Set_friendapply;
+@Stateless(mappedName = "Set_friendapply")
+public class Set_friendapply_Impl implements Set_friendapply  {
+	public Set_friendapply_Impl(){		
+	}
+	 @PersistenceContext
+	 private EntityManager em ;
+
+	@Override
+	public void createfriendapply(int from_userId, int to_userId) {
+		// TODO Auto-generated method stub
+    
+		 em.persist(new List_friendapply(from_userId,to_userId));
+		 JOptionPane.showMessageDialog(null,"you have already passed the friend apply","Success", JOptionPane.WARNING_MESSAGE);
+		 
+		 
+	}
+
+}

@@ -1,0 +1,13 @@
+package Gestion_ami_Impl;
+
+import Gestion_ami.Verification_User_Account;
+
+public class Verification_user_account_Impl implements Verification_User_Account{
+
+	@Override
+	public boolean verification_user_account(String userAccount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

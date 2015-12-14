@@ -1,0 +1,47 @@
+
+
+import javax.ejb.Stateless;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.swing.JOptionPane;
+
+import Gestion_ami.Demande_FriendsApply;
+import Gestion_ami.Is_Online;
+import Gestion_ami.Is_my_friend;
+import Gestion_ami.Set_friendapply;
+import Gestion_ami_Impl.Is_Online_Impl;
+import Gestion_ami_Impl.Is_my_friend_Impl;
+import Gestion_defis.Demande_DefisApply;
+import Gestion_defis.Set_defisapply;
+@Stateless(mappedName = "Demande_DefisApply")
+public class Demande_DefisApply_Impl implements Demande_DefisApply {
+	public Demande_DefisApply_Impl(){		
+	}
+
+	@Override
+	public void demande_DefisApply(int from_userId,int to_userId) {
+		// TODO Auto-generated method stub
+		   try {
+			InitialContext context = new InitialContext();
+			Is_Online ismyfriendOnline =(Is_Online)context.lookup("Is_Online"); ;
+			if(ismyfriendOnline.is_online(to_userId)){
+				JOptionPane.showMessageDialog(null,"He is online","Alert", JOptionPane.WARNING_MESSAGE);			
+				}else{
+					JOptionPane.showMessageDialog(null,"He is not online, we will passe a demande","Alert", JOptionPane.WARNING_MESSAGE);
+					Set_defisapply  setdefisapply =(Set_defisapply)context.lookup("Set_defisapply");
+					setfriendapply.createfriendapply(from_userId, to_userId);
+				}
+			
+			
+			
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+}
+		
+
+

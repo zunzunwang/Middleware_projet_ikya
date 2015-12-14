@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+ xmlns="http://java.sun.com/xml/ns/persistence"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="jpa-project">
+
+    <!-- Eclipse link JPA implementation -->
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+ 
+    <!-- Data source definition -->
+<!--     <jta-data-source>jdbc/BDD_Middleware</jta-data-source>
+ -->    <class>Marin</class>
+ 
+ 
+        <properties>
+        <property name="eclipselink.jdbc.databaseName" value="BDD_Middleware"/>
+        <property name="eclipselink.jdbc.portNumber" value="3306"/>
+        <property name="eclipselink.jdbc.serverName" value="localhost"/>
+        <property name="eclipselink.jdbc.user" value="root"/>
+        <property name="eclipselink.jdbc.password" value="12345"/>
+        </properties>
+    </persistence-unit>
+</persistence>

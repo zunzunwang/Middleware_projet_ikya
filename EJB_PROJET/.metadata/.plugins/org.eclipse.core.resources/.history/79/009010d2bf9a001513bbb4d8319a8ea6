@@ -1,0 +1,30 @@
+import java.rmi.RemoteException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+
+public class Main_test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		   try {
+			   // création du "contexte initial" = de la connexion à l'annuaire du serveur
+			   InitialContext context = new InitialContext();
+
+			   // requête sur le nom de la ressource que l'on veut, ici notre EJB
+			   MarinService marinService = (MarinService)context.lookup("MarinService") ;
+
+			   // invocation d'une méthode
+			   long id;
+			id = marinService.createMarin(3,"Bob","user",0);
+			System.out.println("Id = " + id) ;
+
+
+		      } catch (NamingException e) {
+		         e.printStackTrace();
+		      }
+		   }
+		
+	}

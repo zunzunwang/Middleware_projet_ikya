@@ -1,0 +1,37 @@
+import java.util.List;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.swing.JOptionPane;
+
+import Gestion_ami.Id_Name;
+//import Gestion_ami.Get_User_info;
+/**
+ * 
+ * obtenir id selon son nom.
+ * @param <User>
+ *
+ */
+@Stateless(mappedName = "Id_Name")
+
+public class IdNameImpl<User> implements Id_Name {
+	
+    @PersistenceContext
+	private EntityManager em ;
+
+	@SuppressWarnings("unchecked")
+	public int idName(String username) {
+		// TODO Auto-generated method stub
+//		String qlString = "SELECT e FROM user e WHERE e.userid =  :id";
+		String qlString = "SELECT e FROM user e WHERE e.username = :username";
+		Query query = em.createQuery(qlString);		
+		query.setParameter("username", username);
+		User person=(User)query.getSingleResult();
+		return person.;
+//		User user = (User)query.getResultList();
+
+	}
+}

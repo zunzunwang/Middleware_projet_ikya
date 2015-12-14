@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.ejb.Stateless"/>
+<fullyQualifiedTypeName name="javax.ejb.Remote"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
+<fullyQualifiedTypeName name="javax.persistence.Persistence"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityTransaction"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+<fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+<fullyQualifiedTypeName name="Gestion_ami.Get_User_info"/>
+<fullyQualifiedTypeName name="Gestion_ami.Get_friends"/>
+<fullyQualifiedTypeName name="Gestion_defis.Set_defisapply"/>
+<fullyQualifiedTypeName name="Gestion_ami.Allfriends"/>
+<fullyQualifiedTypeName name="Gestion_ami.Find_User"/>
+<fullyQualifiedTypeName name="Gestion_ami.Delete_Friend"/>
+<fullyQualifiedTypeName name="Gestion_ami.Verification"/>
+<fullyQualifiedTypeName name="Gestion_ami.Verification_User_Account"/>
+<fullyQualifiedTypeName name="Gestion_ami.Rank"/>
+<fullyQualifiedTypeName name="Gestion_ami.UserService"/>
+<fullyQualifiedTypeName name="javax.persistence.NoResultException"/>
+<fullyQualifiedTypeName name="Gestion_ami.Demande_FriendsApply"/>
+<fullyQualifiedTypeName name="Gestion_defis.Demande_DefisApply"/>
+</qualifiedTypeNameHistroy>

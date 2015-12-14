@@ -1,0 +1,26 @@
+
+
+import java.util.List;
+
+import javax.ejb.Remote;
+
+
+@Remote
+public interface UserFacadeRemote {
+
+	public boolean register(User user); // 创建用户
+
+	public void updateUser(User user); // 修改密码
+
+	public void removeUser(User user); // 删除用户
+
+	public User getUserByAccount(String userAccount); // 通过账户查找用户
+
+	public User getUserByName(String userName); // 通过姓名查找
+
+	public List<User> getAllUser(Integer userId); // 得到所有用户
+
+	public boolean isUserExist(String userAccount); // 用户账户是否存在
+
+	public boolean isUserOnline(String userAccount); // 得到用户是否在线
+}

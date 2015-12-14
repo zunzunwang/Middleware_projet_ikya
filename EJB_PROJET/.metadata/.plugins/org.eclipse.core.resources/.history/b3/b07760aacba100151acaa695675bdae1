@@ -1,0 +1,68 @@
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the list_defisapply database table.
+ * 
+ */
+@Entity
+@Table(name="list_defisapply")
+public class ListDefisapply implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int id;
+
+	private int form_userId;
+
+	private byte isRead;
+
+	private int to_userId;
+
+    public ListDefisapply() {
+		super();
+    }
+    public ListDefisapply(int from_userId,int to_userId) {
+    	this.from_userId=from_userId;
+    	this.to_userId=to_userId;
+    	this.isRead=0;
+    	date = new java.sql.Date(System.currentTimeMillis());
+    }
+
+    
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getForm_userId() {
+		return this.form_userId;
+	}
+
+	public void setForm_userId(int form_userId) {
+		this.form_userId = form_userId;
+	}
+
+	public byte getIsRead() {
+		return this.isRead;
+	}
+
+	public void setIsRead(byte isRead) {
+		this.isRead = isRead;
+	}
+
+	public int getTo_userId() {
+		return this.to_userId;
+	}
+
+	public void setTo_userId(int to_userId) {
+		this.to_userId = to_userId;
+	}
+
+}

@@ -1,0 +1,16 @@
+package Gestion_ami_Impl;
+
+import Gestion_ami.Demande_FriendsApply;
+
+public class Demande_FriendsApply_Impl implements Demande_FriendsApply {
+
+	@Override
+	public void Demande_FriendsApply(int from_userId,int to_userId) {
+		// TODO Auto-generated method stub
+		Is_my_friend_Impl Ismyfriend = new Is_my_friend_Impl();
+		Ismyfriend.is_myfriend(from_userId, to_userId)
+		
+		
+	}
+
+}

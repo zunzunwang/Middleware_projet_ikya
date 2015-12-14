@@ -1,0 +1,67 @@
+
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+
+
+@Stateless
+@Remote(MessageFacadeRemote.class)
+public class MessageFacadeBean implements MessageFacadeRemote {
+
+//	@PersistenceContext
+//	private EntityManager em;
+//
+//	@Override
+//	public boolean sendMessage(Message message) {
+//		// TODO Auto-generated method stub
+//
+//		Query userQ = em
+//				.createQuery("SELECT u FROM User u WHERE u.userName =:userName");
+//		userQ.setParameter("userName", message.getToUser());
+//		User toUser = (User) userQ.getSingleResult();
+////		toUser.getMessages().add(message);
+//		em.persist(message);
+//
+//		return true;
+//	}
+//
+//	@Override
+//	public List<Message> getNotReadMessage(String userAccount) {
+//		// TODO Auto-generated method stub
+//
+//		Query userQ = em
+//				.createQuery("SELECT u FROM User u WHERE u.userAccount =:userAccount");
+//		userQ.setParameter("userAccount", userAccount);
+//		User user = (User) userQ.getSingleResult();
+////		List<Message> messages = user.getMessages();
+//		List<Message> notReadMessages = new LinkedList<Message>();
+//		for (Message message : messages) {
+//			if (!message.getIsRead())
+//				notReadMessages.add(message);
+//		}
+//		return notReadMessages;
+//	}
+//
+//	public void setReadMessage(Integer messageId) {
+//		Message message = em.find(Message.class, messageId);
+//		message.setIsRead(true);
+//		em.merge(message);
+//	}
+//
+//	@SuppressWarnings("unchecked")
+//	public List<Message> getUserMessage(String hostName, String guestName) {
+//
+//		Query messageQ = em
+//				.createQuery("SELECT m FROM Message m WHERE (m.fromUser =:hostName AND m.toUser =:guestName) OR(m.fromUser =:guestName AND m.toUser =:hostName)");
+//		messageQ.setParameter("hostName", hostName);
+//		messageQ.setParameter("guestName", guestName);
+//
+//		return messageQ.getResultList();
+//	}
+}

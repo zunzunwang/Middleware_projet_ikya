@@ -1,0 +1,5 @@
+package Gestion_ami_Impl;
+
+public interface Verification {
+
+}

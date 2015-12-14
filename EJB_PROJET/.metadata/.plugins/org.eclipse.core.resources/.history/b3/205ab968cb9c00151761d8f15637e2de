@@ -1,0 +1,90 @@
+
+
+import java.io.Serializable;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.String;
+import java.util.List;
+
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: User
+ *
+ */
+@Entity
+
+public class User implements Serializable {
+
+	
+	private Integer userID;
+	private String userAccount;
+	private String userPassword;
+	private String userSex;
+	private String userEmail;
+	private String userName;
+	private Boolean isOnline;
+	private List<Message> messages;
+	private static final long serialVersionUID = 1L;
+
+	public User() {
+		super();
+	}   
+	public Integer getUserID() {
+		return this.userID;
+	}
+
+	public void setUserID(Integer userID) {
+		this.userID = userID;
+	}   
+	public String getUserAccount() {
+		return this.userAccount;
+	}
+
+	public void setUserAccount(String userAccount) {
+		this.userAccount = userAccount;
+	}   
+	public String getUserPassword() {
+		return this.userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}   
+	public String getUserSex() {
+		return this.userSex;
+	}
+
+	public void setUserSex(String userSex) {
+		this.userSex = userSex;
+	}   
+	public String getUserEmail() {
+		return this.userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}   
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}   
+	public Boolean getIsOnline() {
+		return this.isOnline;
+	}
+
+	public void setIsOnline(Boolean isOnline) {
+		this.isOnline = isOnline;
+	}   
+	public List<Message> getMessages() {
+		return this.messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+   
+}
